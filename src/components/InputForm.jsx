@@ -1,73 +1,75 @@
-import { Formik, ErrorMessage } from 'formik';
-import {
-  ErrorText,
-  FormStyle,
-  InputLeft,
-  InputRight,
-  Label,
-} from './InputForm.styled';
-import { object, string } from 'yup';
+import { useState } from 'react';
+import { Form, InputLeft, InputRight, Label } from './InputForm.styled';
 import { Btn } from './Btn';
 
-const schema = object({
-  priceFrom: string(),
-  priceTo: string(),
-});
-
-const initialValues = {
-  priceFrom: '',
-  priceTo: '',
-};
-
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => <ErrorText>{message}</ErrorText>}
-    />
-  );
-};
-
 export const InputForm = ({ onSubmit }) => {
-  const handleSubmit = (values, { resetForm }) => {
-    // onSubmit(values);
-    console.log('values :>> ', values);
-    resetForm();
+  const INITIAL_STATE = {
+    priceFrom: '',
+    priceTo: '',
+  };
+
+  const [valueForm, setValueForm] = useState(INITIAL_STATE);
+  const { priceFrom, priceTo } = valueForm;
+
+  const addCommaDelimiter = num =>
+    num.replace(/[^0-9.]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const removesCommas = key => key.split(',').join('');
+
+  const hanleGhange = evt => {
+    const { name, value } = evt.target;
+
+    setValueForm({ ...valueForm, [name]: addCommaDelimiter(value) });
+  };
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+
+    if (priceFrom === '' && priceTo === '') return;
+
+    onSubmit({
+      priceFrom: removesCommas(priceFrom),
+      priceTo: removesCommas(priceTo),
+    });
+
+    setValueForm(INITIAL_STATE);
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      <FormStyle autoComplete="on">
-        <Label htmlFor="priceFrom">
-          Сar mileage / km
-          <div>
-            <p>From</p>
-            <InputLeft type="text" name="priceFrom" />
-            <FormError name="priceFrom" />
-          </div>
-        </Label>
+    <Form onSubmit={handleSubmit} autoComplete="on">
+      <Label htmlFor="priceFrom">
+        Сar mileage / km
+        <div>
+          <p>From</p>
+          <InputLeft
+            type="text"
+            name="priceFrom"
+            value={priceFrom}
+            onChange={hanleGhange}
+          />
+        </div>
+      </Label>
 
-        <Label htmlFor="priceFrom">
-          <div>
-            <p>To</p>
-            <InputRight type="text" name="priceTo" />
-            <FormError name="priceTo" />
-          </div>
-        </Label>
+      <Label htmlFor="priceFrom">
+        <div>
+          <p>To</p>
+          <InputRight
+            type="text"
+            name="priceTo"
+            value={priceTo}
+            onChange={hanleGhange}
+          />
+        </div>
+      </Label>
 
-        <Btn
-          $width="136px"
-          $paddingTopBott="14px 0"
-          type="submit"
-          onClick={() => console.log('click Btn search')}
-        >
-          Search
-        </Btn>
-      </FormStyle>
-    </Formik>
+      <Btn
+        $width="136px"
+        $paddingTopBott="14px 0"
+        type="submit"
+        onClick={() => console.log('click Btn search')}
+      >
+        Search
+      </Btn>
+    </Form>
   );
 };
