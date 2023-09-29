@@ -1,15 +1,11 @@
-import { InputForm } from 'components/InputForm';
+import { Filter } from 'components/Filter';
 
 const Catalog = () => {
-  const handleGet = values => {
-    console.log('Sent to Backend :>> ', values);
-  };
-
   return (
     <>
       <h1>Catalog Pages</h1>
 
-      <InputForm onSubmit={handleGet} />
+      <Filter />
     </>
   );
 };
