@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TitleStyled = styled.h3`
+export const Title = styled.h3`
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
@@ -9,7 +9,7 @@ export const TitleStyled = styled.h3`
   color: ${props => props.$colorValue || '#8a8a89'};
 `;
 
-export const ContainerSt = styled.div`
+export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@ export const ContainerSt = styled.div`
   }
 `;
 
-export const ListOptionsSt = styled.ul`
+export const ListOptions = styled.ul`
   position: absolute;
   top: 50px;
   left: 0;

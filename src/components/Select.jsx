@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ContainerSt, ListOptionsSt, TitleStyled } from './Select.styled';
+import { Container, ListOptions, Title, TitleStyled } from './Select.styled';
 import sprite from 'images/sprite.svg';
 
 export const Select = ({
@@ -50,9 +50,9 @@ export const Select = ({
 
   return (
     <div>
-      <TitleStyled $colorValue={$colorValue}>{title}</TitleStyled>
+      <Title $colorValue={$colorValue}>{title}</Title>
 
-      <ContainerSt $width={$width} onClick={handleShowList}>
+      <Container $width={$width} onClick={handleShowList}>
         {title === 'Car brand' ? (
           <p>{!selected ? `${defaultText}` : `${selected}`}</p>
         ) : (
@@ -68,7 +68,7 @@ export const Select = ({
         </svg>
 
         {showSelect && (
-          <ListOptionsSt $width={$width} $maxHeight={$maxHeight}>
+          <ListOptions $width={$width} $maxHeight={$maxHeight}>
             {getListSelect(list).map(item => {
               return (
                 <li
@@ -81,9 +81,9 @@ export const Select = ({
                 </li>
               );
             })}
-          </ListOptionsSt>
+          </ListOptions>
         )}
-      </ContainerSt>
+      </Container>
     </div>
   );
 };
