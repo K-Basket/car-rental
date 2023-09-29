@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, ListOptions, Title, TitleStyled } from './Select.styled';
+import { Container, ListOptions, Title } from './Select.styled';
 import sprite from 'images/sprite.svg';
 
 export const Select = ({
@@ -12,7 +12,6 @@ export const Select = ({
   onSubmit,
   selected,
 }) => {
-  // const [selected, setSelected] = useState('');
   const [showSelect, setShowSelect] = useState(false);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ export const Select = ({
 
   const handleGetSelected = evt => {
     const { name } = evt.target.dataset;
-    // setSelected(name);
 
     const titleKey = title.split(' ').join('').split('/1').join('');
     onSubmit({ ...{ [titleKey]: name } });
@@ -44,7 +42,6 @@ export const Select = ({
       if (!result.includes(item)) result.push(item);
     });
 
-    // console.log('result :>> ', result);
     return result;
   }
 

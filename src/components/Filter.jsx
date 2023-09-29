@@ -14,8 +14,8 @@ export const Filter = () => {
     Pricehour: '',
   };
 
-  const { data, error, isLoading } = useGetCarsQuery();
-  console.log('data :>> ', data, error, isLoading);
+  const { data } = useGetCarsQuery();
+  // console.log('data :>> ', data, error, isLoading);
 
   const [valueForm, setValueForm] = useState(INITIAL_STATE);
   const { priceFrom, priceTo, Carbrand, Pricehour } = valueForm;

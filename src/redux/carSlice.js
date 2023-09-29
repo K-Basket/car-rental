@@ -9,12 +9,12 @@ export const carsApi = createApi({
   endpoints: builder => ({
     // get
     getCars: builder.query({
-      query: () => `/advert`,
+      query: () => `/adverts`,
       providesTags: ['Car'],
     }),
     // getById
     getCarById: builder.query({
-      query: id => `/advert/${id}`,
+      query: id => `/adverts/${id}`,
       providesTags: ['Car'],
     }),
   }),
