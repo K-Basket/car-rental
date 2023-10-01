@@ -12,7 +12,7 @@ import {
 } from './Cards.styled';
 import sprite from 'images/sprite.svg';
 
-export const Cards = ({ getIdCar }) => {
+export const Cards = ({ onClose, getIdCar }) => {
   const { data } = useGetCarsQuery();
 
   return (
@@ -41,6 +41,7 @@ export const Cards = ({ getIdCar }) => {
                   data-card={id}
                   onClick={evt => {
                     getIdCar(evt.currentTarget.dataset.card);
+                    onClose();
                   }}
                 >
                   <Card>
