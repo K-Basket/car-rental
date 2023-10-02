@@ -9,7 +9,7 @@ import { useGetCarsQuery } from 'redux/carSlice';
 const Catalog = () => {
   const { data } = useGetCarsQuery();
   const [dataCar, setDataCar] = useState({});
-  console.log('dataCar for Modal :>> ', dataCar);
+  // console.log('dataCar for Modal :>> ', dataCar);
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {

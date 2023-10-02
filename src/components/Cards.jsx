@@ -11,9 +11,42 @@ import {
   CardHeading,
 } from './Cards.styled';
 import sprite from 'images/sprite.svg';
+import { useEffect, useState } from 'react';
+import {
+  loadLocalStorage,
+  removeLocalStorage,
+  saveLocalStorage,
+} from 'helpers/storage';
 
 export const Cards = ({ onClose, getIdCar }) => {
   const { data } = useGetCarsQuery();
+  const [idCardsFavorite, setIdCardsFavorite] = useState([]);
+
+  useEffect(() => {
+    const localState = loadLocalStorage('idCars');
+
+    if (localState) setIdCardsFavorite(localState);
+  }, []);
+
+  const addFavorite = id => {
+    if (!idCardsFavorite.includes(id)) {
+      setIdCardsFavorite(prev => [...prev, id]);
+
+      saveLocalStorage('idCars', [...idCardsFavorite, id]);
+
+      return;
+    }
+
+    if (idCardsFavorite.includes(id)) {
+      const res = [...idCardsFavorite];
+      res.splice(idCardsFavorite.indexOf(id), 1);
+      setIdCardsFavorite(res);
+
+      saveLocalStorage('idCars', res);
+    }
+
+    if (idCardsFavorite.length === 1) removeLocalStorage('idCars');
+  };
 
   return (
     <section>
@@ -41,7 +74,10 @@ export const Cards = ({ onClose, getIdCar }) => {
                     key={id}
                     data-card={id}
                     onClick={evt => {
-                      if (evt.target.nodeName !== 'svg') {
+                      if (
+                        evt.target.nodeName !== 'svg' &&
+                        evt.target.nodeName !== 'use'
+                      ) {
                         getIdCar(evt.currentTarget.dataset.card);
                         onClose();
                       }
@@ -55,11 +91,11 @@ export const Cards = ({ onClose, getIdCar }) => {
                           height="20px"
                           data-card={id}
                           style={{
-                            fill: false && '#3470ff',
-                            stroke: false && 'none',
+                            fill: idCardsFavorite.includes(id) && '#3470ff',
+                            stroke: idCardsFavorite.includes(id) && 'none',
                           }}
                           onClick={() => {
-                            console.log('click icon');
+                            addFavorite(id);
                           }}
                         >
                           <use href={`${sprite}#icon-like-active`}></use>
