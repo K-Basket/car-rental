@@ -3,18 +3,12 @@ import styled from 'styled-components';
 const gapGridLeft = 29;
 const gapGridTop = 50;
 const numberOfCards = 4;
-const shadow =
+export const shadow =
   '0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)';
 
 export const Container = styled.div`
   /* outline: 1px solid salmon; */
-
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: 50px;
-  width: 1184px;
+  margin-bottom: 50px;
 `;
 
 export const CardSet = styled.ul`

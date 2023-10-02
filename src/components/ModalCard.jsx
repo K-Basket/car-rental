@@ -41,7 +41,7 @@ export const ModalCard = ({ onClose, dataCar }) => {
       </svg>
       <article>
         <CardThumb>
-          <img src={img} alt={'make'} />
+          <img src={img} alt={make} />
         </CardThumb>
 
         <Description>

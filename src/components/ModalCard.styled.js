@@ -68,7 +68,6 @@ export const CardTexCondit = styled.li`
   border-radius: 35px;
   color: #363535;
   background-color: #f9f9f9;
-  background-color: #dfdfdf;
 
   & span {
     color: #3470ff;

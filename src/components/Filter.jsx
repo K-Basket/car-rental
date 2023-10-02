@@ -77,12 +77,13 @@ export const Filter = () => {
   };
 
   return (
-    <div
+    <section
       style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'end',
         gap: '18px',
+        marginBottom: '50px',
       }}
     >
       <Select
@@ -135,6 +136,6 @@ export const Filter = () => {
           Search
         </Btn>
       </Form>
-    </div>
+    </section>
   );
 };

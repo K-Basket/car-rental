@@ -24,9 +24,6 @@ const Catalog = () => {
 
   return (
     <>
-      <h1>Catalog Pages</h1>
-      <Btn onClick={toggleModal}>start</Btn>
-
       <Filter />
       <Cards onClose={toggleModal} getIdCar={getIdCar} />
 
