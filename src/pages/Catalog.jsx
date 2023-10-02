@@ -1,4 +1,3 @@
-import { Btn } from 'components/Btn';
 import { Cards } from 'components/Cards';
 import { Filter } from 'components/Filter';
 import { Modal } from 'components/Modal';

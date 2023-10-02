@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { shadow } from './Cards.styled';
+// import { shadow } from './Cards.styled';
 
 export const Header = styled.header`
   padding-top: 10px;
