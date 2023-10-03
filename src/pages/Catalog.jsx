@@ -24,7 +24,7 @@ const Catalog = () => {
   return (
     <>
       <Filter />
-      <Cards onClose={toggleModal} getIdCar={getIdCar} />
+      <Cards listCars={data} onClose={toggleModal} getIdCar={getIdCar} />
 
       {showModal && (
         <Modal onClose={toggleModal}>

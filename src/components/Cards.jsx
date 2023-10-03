@@ -1,4 +1,3 @@
-import { useGetCarsQuery } from 'redux/carSlice';
 import {
   CardSet,
   Container,
@@ -18,8 +17,8 @@ import {
   saveLocalStorage,
 } from 'helpers/storage';
 
-export const Cards = ({ onClose, getIdCar }) => {
-  const { data } = useGetCarsQuery();
+export const Cards = ({ listCars, onClose, getIdCar }) => {
+  // const { data } = useGetCarsQuery();
   const [idCardsFavorite, setIdCardsFavorite] = useState([]);
 
   useEffect(() => {
@@ -52,8 +51,8 @@ export const Cards = ({ onClose, getIdCar }) => {
     <section>
       <Container>
         <CardSet>
-          {data &&
-            data.map(
+          {listCars &&
+            listCars.map(
               ({
                 id,
                 img,
