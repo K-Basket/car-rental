@@ -10,41 +10,41 @@ import {
   CardHeading,
 } from './Cards.styled';
 import sprite from 'images/sprite.svg';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   loadLocalStorage,
   removeLocalStorage,
   saveLocalStorage,
 } from 'helpers/storage';
+import { useCarsContext } from 'redux/Context';
 
-export const Cards = ({ listCars, onClose, getIdCar }) => {
-  // const { data } = useGetCarsQuery();
-  const [idCardsFavorite, setIdCardsFavorite] = useState([]);
+export const Cards = ({ listCars }) => {
+  const { getIdCar, toggleModal, idCarsFavorite, addIdCarFavorite } =
+    useCarsContext();
 
   useEffect(() => {
-    const localState = loadLocalStorage('idCars');
-
-    if (localState) setIdCardsFavorite(localState);
-  }, []);
+    if (idCarsFavorite.length === 0)
+      addIdCarFavorite(loadLocalStorage('idCars'));
+  }, [addIdCarFavorite, idCarsFavorite.length]);
 
   const addFavorite = id => {
-    if (!idCardsFavorite.includes(id)) {
-      setIdCardsFavorite(prev => [...prev, id]);
+    if (!idCarsFavorite.includes(id)) {
+      addIdCarFavorite(prev => [...prev, id]);
 
-      saveLocalStorage('idCars', [...idCardsFavorite, id]);
+      saveLocalStorage('idCars', [...idCarsFavorite, id]);
 
       return;
     }
 
-    if (idCardsFavorite.includes(id)) {
-      const res = [...idCardsFavorite];
-      res.splice(idCardsFavorite.indexOf(id), 1);
-      setIdCardsFavorite(res);
+    if (idCarsFavorite.includes(id)) {
+      const res = [...idCarsFavorite];
+      res.splice(idCarsFavorite.indexOf(id), 1);
+      addIdCarFavorite(res);
 
       saveLocalStorage('idCars', res);
     }
 
-    if (idCardsFavorite.length === 1) removeLocalStorage('idCars');
+    if (idCarsFavorite.length === 1) removeLocalStorage('idCars');
   };
 
   return (
@@ -78,7 +78,7 @@ export const Cards = ({ listCars, onClose, getIdCar }) => {
                         evt.target.nodeName !== 'use'
                       ) {
                         getIdCar(evt.currentTarget.dataset.card);
-                        onClose();
+                        toggleModal();
                       }
                     }}
                   >
@@ -90,8 +90,8 @@ export const Cards = ({ listCars, onClose, getIdCar }) => {
                           height="20px"
                           data-card={id}
                           style={{
-                            fill: idCardsFavorite.includes(id) && '#3470ff',
-                            stroke: idCardsFavorite.includes(id) && 'none',
+                            fill: idCarsFavorite.includes(id) && '#3470ff',
+                            stroke: idCarsFavorite.includes(id) && 'none',
                           }}
                           onClick={() => {
                             addFavorite(id);

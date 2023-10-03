@@ -12,7 +12,7 @@ import {
 } from './ModalCard.styled';
 import { addCommaDelimiter } from 'helpers/addCommaDelimiter';
 
-export const ModalCard = ({ onClose, dataCar }) => {
+export const ModalCard = ({ onClose, dataOneCar }) => {
   const {
     img,
     make,
@@ -29,7 +29,7 @@ export const ModalCard = ({ onClose, dataCar }) => {
     rentalPrice,
     mileage,
     rentalConditions,
-  } = dataCar;
+  } = dataOneCar;
   const location = address.split(',');
   const rentalCondit = rentalConditions.split('\n');
   const mileageWithComma = addCommaDelimiter(`${mileage}`);
