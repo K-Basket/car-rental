@@ -9,46 +9,11 @@ import {
   WrapCardHeading,
   CardHeading,
 } from './Cards.styled';
-import sprite from 'images/sprite.svg';
-import {
-  loadLocalStorage,
-  removeLocalStorage,
-  saveLocalStorage,
-} from 'helpers/storage';
 import { useCarsContext } from 'redux/Context';
-import { useEffect } from 'react';
+import { Favorite } from './Favorite';
 
 export const Cards = ({ listCars }) => {
-  const { getIdCar, toggleModal, idCarsFavorite, setIdCarsFavorite } =
-    useCarsContext();
-
-  console.log('idCarsFavorite :>> ', idCarsFavorite);
-
-  useEffect(() => {
-    const localState = loadLocalStorage('idCars');
-
-    if (localState) setIdCarsFavorite(localState);
-  }, [setIdCarsFavorite]);
-
-  const addFavorite = id => {
-    if (!idCarsFavorite.includes(id)) {
-      setIdCarsFavorite(prev => [...prev, id]);
-
-      saveLocalStorage('idCars', [...idCarsFavorite, id]);
-
-      return;
-    }
-
-    if (idCarsFavorite.includes(id)) {
-      const res = [...idCarsFavorite];
-      res.splice(idCarsFavorite.indexOf(id), 1);
-      setIdCarsFavorite(res);
-
-      saveLocalStorage('idCars', res);
-    }
-
-    if (idCarsFavorite.length === 1) removeLocalStorage('idCars');
-  };
+  const { getIdCar, toggleModal } = useCarsContext();
 
   return (
     <section>
@@ -71,37 +36,22 @@ export const Cards = ({ listCars }) => {
               }) => {
                 const location = address.split(',');
 
+                const handleLearnMore = evt => {
+                  if (
+                    evt.target.nodeName !== 'svg' &&
+                    evt.target.nodeName !== 'use'
+                  ) {
+                    getIdCar(evt.currentTarget.dataset.card);
+                    toggleModal();
+                  }
+                };
+
                 return (
-                  <Item
-                    key={id}
-                    data-card={id}
-                    onClick={evt => {
-                      if (
-                        evt.target.nodeName !== 'svg' &&
-                        evt.target.nodeName !== 'use'
-                      ) {
-                        getIdCar(evt.currentTarget.dataset.card);
-                        toggleModal();
-                      }
-                    }}
-                  >
+                  <Item key={id} data-card={id} onClick={handleLearnMore}>
                     <Card>
                       <CardThumb>
                         <img src={img} alt={make} />
-                        <svg
-                          width="20px"
-                          height="20px"
-                          data-card={id}
-                          style={{
-                            fill: idCarsFavorite.includes(id) && '#3470ff',
-                            stroke: idCarsFavorite.includes(id) && 'none',
-                          }}
-                          onClick={() => {
-                            addFavorite(id);
-                          }}
-                        >
-                          <use href={`${sprite}#icon-like-active`}></use>
-                        </svg>
+                        <Favorite id={id} $top="14px" $right="14px" />
                       </CardThumb>
 
                       <CardContent>

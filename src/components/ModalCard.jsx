@@ -1,5 +1,4 @@
-import { Btn } from './Btn';
-import SvgSprite from 'images/sprite.svg';
+import sprite from 'images/sprite.svg';
 import {
   CardHeading,
   CardModal,
@@ -9,8 +8,10 @@ import {
   CardThumb,
   CardTitleDescSt,
   Description,
+  Link,
 } from './ModalCard.styled';
 import { addCommaDelimiter } from 'helpers/addCommaDelimiter';
+import { Favorite } from './Favorite';
 
 export const ModalCard = ({ onClose, dataOneCar }) => {
   const {
@@ -37,11 +38,12 @@ export const ModalCard = ({ onClose, dataOneCar }) => {
   return (
     <CardModal>
       <svg width="24px" height="24px" onClick={onClose}>
-        <use href={`${SvgSprite}#icon-x`}></use>
+        <use href={`${sprite}#icon-x`}></use>
       </svg>
       <article>
         <CardThumb>
           <img src={img} alt={make} />
+          <Favorite id={id} $top="25px" $right="25px" />
         </CardThumb>
 
         <Description>
@@ -98,14 +100,7 @@ export const ModalCard = ({ onClose, dataOneCar }) => {
           </ul>
         </Description>
 
-        <Btn
-          $width="125px"
-          onClick={() => {
-            console.log('onClick Button Rental car');
-          }}
-        >
-          Rental car
-        </Btn>
+        <Link href="tel:+380730000000">Rental car</Link>
       </article>
     </CardModal>
   );

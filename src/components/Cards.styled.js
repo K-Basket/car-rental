@@ -55,20 +55,6 @@ export const CardThumb = styled.div`
     height: 100%;
     object-fit: cover;
   }
-
-  & svg {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    stroke: #ffffffcc;
-    /* fill: #3470ff; */
-    fill: none;
-    transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-
-    &:hover {
-      scale: 1.1;
-    }
-  }
 `;
 
 export const CardContent = styled.div`

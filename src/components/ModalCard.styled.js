@@ -9,7 +9,7 @@ export const CardModal = styled.div`
   border-radius: 15px;
   background-color: #ffffff;
 
-  & svg {
+  & > svg {
     position: absolute;
     top: 16px;
     right: 16px;
@@ -19,9 +19,10 @@ export const CardModal = styled.div`
 `;
 
 export const CardThumb = styled.div`
+  position: relative;
+
   & img {
     border-radius: 15px;
-
     width: 469px;
     height: 314px;
     object-fit: cover;
@@ -92,4 +93,23 @@ export const CardTitleDescSt = styled.p`
   line-height: calc (20/14);
 
   color: #121417;
+`;
+
+export const Link = styled.a`
+  width: 168px;
+  padding: 12px 50px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: calc(20 / 14);
+
+  border-radius: 12px;
+  color: #ffffff;
+  background-color: #3470ff;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+
+  &:hover,
+  :focus {
+    background-color: #0b44cd;
+  }
 `;

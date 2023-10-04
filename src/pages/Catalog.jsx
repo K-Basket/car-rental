@@ -2,12 +2,21 @@ import { Cards } from 'components/Cards';
 import { Filter } from 'components/Filter';
 import { Modal } from 'components/Modal';
 import { ModalCard } from 'components/ModalCard';
+import { loadLocalStorage } from 'helpers/storage';
+import { useEffect } from 'react';
 import { useCarsContext } from 'redux/Context';
 import { useGetCarsQuery } from 'redux/carSlice';
 
 const Catalog = () => {
   const { data } = useGetCarsQuery();
-  const { showModal, toggleModal, dataOneCar } = useCarsContext();
+  const { showModal, toggleModal, dataOneCar, setIdCarsFavorite } =
+    useCarsContext();
+
+  useEffect(() => {
+    const localState = loadLocalStorage('idCars');
+
+    if (localState) setIdCarsFavorite(localState);
+  }, [setIdCarsFavorite]);
 
   return (
     <>
