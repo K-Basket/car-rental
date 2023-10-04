@@ -21,11 +21,11 @@ import { useCarsContext } from 'redux/Context';
 export const Cards = ({ listCars }) => {
   const { getIdCar, toggleModal, idCarsFavorite, addIdCarFavorite } =
     useCarsContext();
+  const lengthFavorite = idCarsFavorite.length;
 
   useEffect(() => {
-    if (idCarsFavorite.length === 0)
-      addIdCarFavorite(loadLocalStorage('idCars'));
-  }, [addIdCarFavorite, idCarsFavorite.length]);
+    if (!lengthFavorite) addIdCarFavorite(loadLocalStorage('idCars'));
+  }, [addIdCarFavorite, lengthFavorite]);
 
   const addFavorite = id => {
     if (!idCarsFavorite.includes(id)) {
