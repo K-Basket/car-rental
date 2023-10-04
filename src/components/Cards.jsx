@@ -10,26 +10,29 @@ import {
   CardHeading,
 } from './Cards.styled';
 import sprite from 'images/sprite.svg';
-import { useEffect } from 'react';
 import {
   loadLocalStorage,
   removeLocalStorage,
   saveLocalStorage,
 } from 'helpers/storage';
 import { useCarsContext } from 'redux/Context';
+import { useEffect } from 'react';
 
 export const Cards = ({ listCars }) => {
-  const { getIdCar, toggleModal, idCarsFavorite, addIdCarFavorite } =
+  const { getIdCar, toggleModal, idCarsFavorite, setIdCarsFavorite } =
     useCarsContext();
-  const lengthFavorite = idCarsFavorite.length;
+
+  console.log('idCarsFavorite :>> ', idCarsFavorite);
 
   useEffect(() => {
-    if (!lengthFavorite) addIdCarFavorite(loadLocalStorage('idCars'));
-  }, [addIdCarFavorite, lengthFavorite]);
+    const localState = loadLocalStorage('idCars');
+
+    if (localState) setIdCarsFavorite(localState);
+  }, [setIdCarsFavorite]);
 
   const addFavorite = id => {
     if (!idCarsFavorite.includes(id)) {
-      addIdCarFavorite(prev => [...prev, id]);
+      setIdCarsFavorite(prev => [...prev, id]);
 
       saveLocalStorage('idCars', [...idCarsFavorite, id]);
 
@@ -39,7 +42,7 @@ export const Cards = ({ listCars }) => {
     if (idCarsFavorite.includes(id)) {
       const res = [...idCarsFavorite];
       res.splice(idCarsFavorite.indexOf(id), 1);
-      addIdCarFavorite(res);
+      setIdCarsFavorite(res);
 
       saveLocalStorage('idCars', res);
     }

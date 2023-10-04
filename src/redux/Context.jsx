@@ -19,8 +19,6 @@ export const Context = ({ children }) => {
   const getIdCar = idCard =>
     setDataOneCar(data.find(({ id }) => id === idCard));
 
-  const addIdCarFavorite = value => setIdCarsFavorite(value);
-
   return (
     <CarsContext.Provider
       value={{
@@ -31,7 +29,7 @@ export const Context = ({ children }) => {
         getIdCar,
 
         idCarsFavorite,
-        addIdCarFavorite,
+        setIdCarsFavorite,
       }}
     >
       {children}
