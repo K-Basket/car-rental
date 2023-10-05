@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+import {
+  borderColor,
+  highlightBgColor,
+  textLabelFilterColor,
+  textMainColor,
+  textThirdColor,
+  whiteColor,
+} from 'variables.styled';
 
 export const Title = styled.h3`
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
   line-height: calc(18 / 14);
-  color: #8a8a89;
-  color: ${props => props.$colorValue || '#8a8a89'};
+  color: ${props => props.$colorValue || `${textLabelFilterColor}`};
 `;
 
 export const Container = styled.div`
@@ -17,8 +24,7 @@ export const Container = styled.div`
   width: ${props => props.$width || '224px'};
   height: 48px;
   padding: 0 18px 0 18px;
-  background-color: #f7f7fb;
-  background-color: burlywood;
+  background-color: ${highlightBgColor};
   border-radius: 14px;
   cursor: pointer;
   z-index: 1;
@@ -27,11 +33,11 @@ export const Container = styled.div`
     font-size: 18px;
     font-weight: 500;
     line-height: calc(20 / 18);
-    color: #121417;
+    color: ${textMainColor};
   }
 
   & svg {
-    stroke: #121417;
+    stroke: ${textMainColor};
     fill: none;
   }
 `;
@@ -41,17 +47,14 @@ export const ListOptions = styled.ul`
   top: 50px;
   left: 0;
 
-  color: green;
   padding: 14px 18px;
   margin-top: 4px;
 
   width: ${props => props.$width || '224px'};
   max-height: ${props => props.$maxHeight || '272px'};
   border-radius: 14px;
-  border: 1px solid rgba(18, 20, 23, 0.05);
-  border: 1px solid burlywood;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 36px 0px rgba(0, 0, 0, 0.02);
+  border: 1px solid ${borderColor};
+  background-color: ${whiteColor};
 
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -60,13 +63,13 @@ export const ListOptions = styled.ul`
     font-size: 16px;
     font-weight: 500;
     line-height: calc(20 / 16);
-    color: rgba(18, 20, 23, 0.2);
+    color: ${textThirdColor};
 
     &:not(:last-child) {
       padding-bottom: 8px;
 
       &:hover {
-        color: #121417;
+        color: ${textMainColor};
       }
     }
   }

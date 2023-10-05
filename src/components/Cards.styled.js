@@ -1,10 +1,16 @@
 import styled from 'styled-components';
+import {
+  borderAccentColor,
+  normalAccentColor,
+  shadow,
+  textMainColor,
+  textSecondColor,
+  transition,
+} from 'variables.styled';
 
 const gapGridLeft = 29;
 const gapGridTop = 50;
 const numberOfCards = 4;
-export const shadow =
-  '0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)';
 
 export const Container = styled.div`
   /* outline: 1px solid salmon; */
@@ -25,7 +31,7 @@ export const Item = styled.li`
   flex-basis: calc(100% / ${numberOfCards} - ${gapGridLeft}px);
   margin-top: ${gapGridTop}px;
   margin-left: ${gapGridLeft}px;
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: scale ${transition};
   cursor: pointer;
 
   &:hover {
@@ -76,10 +82,10 @@ export const CardHeading = styled.h2`
   font-weight: 500;
   line-height: calc(24 / 16);
 
-  color: #121417;
+  color: ${textMainColor};
 
   & span {
-    color: #3470ff;
+    color: ${normalAccentColor};
   }
 `;
 
@@ -89,7 +95,7 @@ export const CardTitle = styled.h2`
 `;
 
 export const CardText = styled.div`
-  color: rgba(18, 20, 23, 0.5);
+  color: ${textSecondColor};
 
   & ul {
     display: flex;
@@ -99,7 +105,7 @@ export const CardText = styled.div`
     & li {
       &:not(:last-child) {
         height: 16px;
-        border-right: 1px solid rgba(18, 20, 23, 0.1);
+        border-right: 1px solid ${borderAccentColor};
         padding-right: 6px;
       }
     }

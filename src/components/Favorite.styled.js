@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { normalAccentColor, transition } from 'variables.styled';
 
 export const Svg = styled.svg`
   position: absolute;
@@ -6,10 +7,10 @@ export const Svg = styled.svg`
   top: ${({ $top }) => $top || '0px'};
   right: ${({ $right }) => $right || '0px'};
 
-  stroke: ${({ $idInc }) => ($idInc ? 'none' : '#ffffffcc')};
-  fill: ${({ $idInc }) => ($idInc ? '#3470ff' : 'none')};
+  stroke: ${({ $idInc }) => ($idInc ? 'none' : 'rgba(255, 255, 255, 0.8)')};
+  fill: ${({ $idInc }) => ($idInc ? `${normalAccentColor}` : 'none')};
 
-  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: scale ${transition};
 
   &:hover {
     scale: 1.1;

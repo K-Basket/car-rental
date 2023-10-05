@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { backdropModalBgColor } from 'variables.styled';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -9,7 +10,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(18, 20, 23, 0.5);
+  background-color: ${backdropModalBgColor};
   z-index: 1200;
 `;
 

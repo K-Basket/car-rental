@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import {
+  hoverAccentColor,
+  normalAccentColor,
+  transition,
+  whiteColor,
+} from 'variables.styled';
 
 export const Button = styled.button`
   min-width: ${({ $width }) => $width || '100px'};
@@ -11,12 +17,12 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 12px;
-  color: #ffffff;
-  background-color: #3470ff;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  color: ${whiteColor};
+  background-color: ${normalAccentColor};
+  transition: background-color ${transition};
 
   &:hover,
   :focus {
-    background-color: #0b44cd;
+    background-color: ${hoverAccentColor};
   }
 `;

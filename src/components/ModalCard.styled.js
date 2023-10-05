@@ -1,4 +1,15 @@
 import styled from 'styled-components';
+import {
+  borderAccentColor,
+  highlightBgColor,
+  hoverAccentColor,
+  normalAccentColor,
+  textFourthColor,
+  textMainColor,
+  textSecondColor,
+  transition,
+  whiteColor,
+} from 'variables.styled';
 
 export const CardModal = styled.div`
   position: relative;
@@ -7,13 +18,13 @@ export const CardModal = styled.div`
   padding: 40px;
 
   border-radius: 15px;
-  background-color: #ffffff;
+  background-color: ${whiteColor};
 
   & > svg {
     position: absolute;
     top: 16px;
     right: 16px;
-    stroke: #121417;
+    stroke: ${textMainColor};
     cursor: pointer;
   }
 `;
@@ -42,22 +53,22 @@ export const CardHeading = styled.h2`
   font-weight: 500;
   line-height: calc(24 / 16);
 
-  color: #121417;
+  color: ${textMainColor};
 
   & span {
-    color: #3470ff;
+    color: ${normalAccentColor};
   }
 `;
 
 export const CardText = styled.ul`
-  color: rgba(18, 20, 23, 0.5);
+  color: ${textSecondColor};
   display: flex;
   flex-wrap: wrap;
 
   & li {
     &:not(:last-child) {
       height: 16px;
-      border-right: 1px solid rgba(18, 20, 23, 0.1);
+      border-right: 1px solid ${borderAccentColor};
       padding-right: 6px;
       margin-right: 6px;
     }
@@ -67,11 +78,11 @@ export const CardText = styled.ul`
 export const CardTexCondit = styled.li`
   padding: 7px 14px;
   border-radius: 35px;
-  color: #363535;
-  background-color: #f9f9f9;
+  color: ${textFourthColor};
+  background-color: ${highlightBgColor};
 
   & span {
-    color: #3470ff;
+    color: ${normalAccentColor};
   }
 `;
 
@@ -81,7 +92,7 @@ export const CardTextDesc = styled.p`
   font-size: 14px;
   line-height: calc (20/14);
 
-  color: #121417;
+  color: ${textMainColor};
 `;
 
 export const CardTitleDescSt = styled.p`
@@ -92,7 +103,7 @@ export const CardTitleDescSt = styled.p`
   font-weight: 500;
   line-height: calc (20/14);
 
-  color: #121417;
+  color: ${textMainColor};
 `;
 
 export const Link = styled.a`
@@ -104,12 +115,12 @@ export const Link = styled.a`
   line-height: calc(20 / 14);
 
   border-radius: 12px;
-  color: #ffffff;
-  background-color: #3470ff;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  color: ${whiteColor};
+  background-color: ${normalAccentColor};
+  transition: background-color ${transition};
 
   &:hover,
   :focus {
-    background-color: #0b44cd;
+    background-color: ${hoverAccentColor};
   }
 `;

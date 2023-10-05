@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import {
+  borderAccent2Color,
+  highlightBgColor,
+  textLabelFilterColor,
+  textMainColor,
+} from 'variables.styled';
 
 export const Form = styled.form`
   display: flex;
@@ -16,7 +22,7 @@ export const Form = styled.form`
       font-weight: 500;
       line-height: calc(20 / 18);
 
-      color: #121417;
+      color: ${textMainColor};
     }
   }
 `;
@@ -25,7 +31,7 @@ export const Label = styled.label`
   font-size: 14px;
   font-weight: 500;
   line-height: calc(18 / 14);
-  color: #8a8a89;
+  color: ${textLabelFilterColor};
 `;
 
 export const InputLeft = styled.input`
@@ -35,11 +41,10 @@ export const InputLeft = styled.input`
   margin-top: 8px;
   border: none;
   border-radius: 14px 0px 0px 14px;
-  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  border-right: 1px solid ${borderAccent2Color};
 
-  color: #121417;
-  background-color: #f7f7fb;
-  background-color: yellowgreen;
+  color: ${textMainColor};
+  background-color: ${highlightBgColor};
 
   font-size: 18px;
   font-weight: 500;
@@ -55,16 +60,10 @@ export const InputRight = styled.input`
   border: none;
   border-radius: 0px 14px 14px 0px;
 
-  color: #121417;
-  background-color: #f7f7fb;
-  background-color: yellowgreen;
+  color: ${textMainColor};
+  background-color: ${highlightBgColor};
 
   font-size: 18px;
   font-weight: 500;
   line-height: calc(20 / 18);
-`;
-
-export const ErrorText = styled.p`
-  display: inline;
-  color: blueviolet;
 `;
