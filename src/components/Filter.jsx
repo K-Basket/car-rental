@@ -39,7 +39,7 @@ export const Filter = () => {
 
   useEffect(() => {
     if (brand || price || from || to) setIsClean(true);
-  }, [dataFilter]);
+  }, [brand, price, from, to]);
 
   const handleClickBtn = () => {
     if (isClean) {
