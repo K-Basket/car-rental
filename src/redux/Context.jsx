@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { useGetCarsQuery } from './carSlice';
+import { INITIAL_STATE } from 'components/Filter';
 
 const CarsContext = createContext();
 
@@ -10,6 +11,7 @@ export const Context = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [dataOneCar, setDataOneCar] = useState({});
   const [idCarsFavorite, setIdCarsFavorite] = useState([]);
+  const [dataFilter, setDataFilter] = useState(INITIAL_STATE);
 
   const toggleModal = () => {
     setShowModal(prev => !prev);
@@ -30,6 +32,9 @@ export const Context = ({ children }) => {
 
         idCarsFavorite,
         setIdCarsFavorite,
+
+        dataFilter,
+        setDataFilter,
       }}
     >
       {children}

@@ -12,12 +12,15 @@ const Favorites = () => {
   const [listFavoriteCars, setListFavoriteCars] = useState(null);
 
   useEffect(() => {
-    if (data) {
-      const result = data.filter(
-        el => el.id === idCarsFavorite.find(id => id === el.id)
-      );
-      setListFavoriteCars(result);
-    }
+    if (!data) return;
+
+    let result = data.filter(
+      el => el.id === idCarsFavorite.find(id => id === el.id)
+    );
+
+    result = [...result].sort((a, b) => (a.make > b.make ? 1 : -1));
+
+    setListFavoriteCars(result);
   }, [data, idCarsFavorite]);
 
   return (

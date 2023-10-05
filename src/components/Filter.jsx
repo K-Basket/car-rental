@@ -5,24 +5,21 @@ import { addCommaDelimiter } from 'helpers/addCommaDelimiter';
 import { removesCommas } from 'helpers/removesCommas';
 import { useGetCarsQuery } from 'redux/carSlice';
 import { Select } from './Select';
+import { useCarsContext } from 'redux/Context';
+
+export const INITIAL_STATE = {
+  priceFrom: '',
+  priceTo: '',
+  Carbrand: '',
+  Pricehour: '',
+};
 
 export const Filter = () => {
-  const INITIAL_STATE = {
-    priceFrom: '',
-    priceTo: '',
-    Carbrand: '',
-    Pricehour: '',
-  };
-
   const { data } = useGetCarsQuery();
-  // console.log('data :>> ', data, error, isLoading);
+  const { setDataFilter } = useCarsContext();
 
   const [valueForm, setValueForm] = useState(INITIAL_STATE);
   const { priceFrom, priceTo, Carbrand, Pricehour } = valueForm;
-
-  const [dataFilter, setDataFilter] = useState(null);
-  // console.log('dataFilter :>> ', dataFilter);
-  // console.log('valueForm :>> ', valueForm);
 
   const listBrand = data
     ?.map(({ make }) => {
@@ -37,19 +34,13 @@ export const Filter = () => {
     .sort((a, b) => a - b);
 
   const handleGetSelected = values => {
-    setDataFilter({ ...dataFilter, ...values });
     setValueForm({ ...valueForm, ...values });
   };
 
   const hanleGhange = evt => {
     const { name, value } = evt.target;
-    // записал в форму для отображения в интерфейсе с запятой
+
     setValueForm({ ...valueForm, [name]: addCommaDelimiter(value) });
-    // записал данные для фильтрации
-    setDataFilter({
-      ...dataFilter,
-      ...{ [name]: value },
-    });
   };
 
   const handleSubmit = evt => {
@@ -61,19 +52,16 @@ export const Filter = () => {
     }
 
     setDataFilter({
-      ...dataFilter,
+      ...valueForm,
       ...{
         priceFrom: removesCommas(priceFrom),
         priceTo: removesCommas(priceTo),
       },
     });
 
-    setValueForm(INITIAL_STATE);
+    // setValueForm(INITIAL_STATE);
 
-    // Filtering Function
-    console.warn('Here is the filtering Function', dataFilter);
-
-    setDataFilter(INITIAL_STATE);
+    // setDataFilter(INITIAL_STATE);
   };
 
   return (
