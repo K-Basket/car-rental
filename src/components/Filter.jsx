@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, InputLeft, InputRight, Label } from './Filter.styled';
 import { Btn } from './Btn';
 import { addCommaDelimiter } from 'helpers/addCommaDelimiter';
@@ -16,10 +16,38 @@ export const INITIAL_STATE = {
 
 export const Filter = () => {
   const { data } = useGetCarsQuery();
-  const { setDataFilter } = useCarsContext();
-
+  const { setDataFilter, dataFilter } = useCarsContext();
+  const {
+    Carbrand: brand,
+    Pricehour: price,
+    priceFrom: from,
+    priceTo: to,
+  } = dataFilter;
   const [valueForm, setValueForm] = useState(INITIAL_STATE);
   const { priceFrom, priceTo, Carbrand, Pricehour } = valueForm;
+  const [isClean, setIsClean] = useState(false);
+
+  useEffect(() => {
+    if (
+      valueForm.Carbrand ||
+      valueForm.Pricehour ||
+      valueForm.priceFrom ||
+      valueForm.priceTo
+    )
+      setIsClean(false);
+  }, [valueForm]);
+
+  useEffect(() => {
+    if (brand || price || from || to) setIsClean(true);
+  }, [dataFilter]);
+
+  const handleClickBtn = () => {
+    if (isClean) {
+      setValueForm(INITIAL_STATE);
+      setDataFilter(INITIAL_STATE);
+      setIsClean(false);
+    }
+  };
 
   const listBrand = data
     ?.map(({ make }) => {
@@ -58,10 +86,6 @@ export const Filter = () => {
         priceTo: removesCommas(priceTo),
       },
     });
-
-    // setValueForm(INITIAL_STATE);
-
-    // setDataFilter(INITIAL_STATE);
   };
 
   return (
@@ -120,8 +144,13 @@ export const Filter = () => {
           </div>
         </Label>
 
-        <Btn $width="136px" $paddingTopBott="14px 0" type="submit">
-          Search
+        <Btn
+          $width="136px"
+          $paddingTopBott="14px 0"
+          type="submit"
+          onClick={handleClickBtn}
+        >
+          {isClean ? 'Clean' : 'Search'}
         </Btn>
       </Form>
     </section>
