@@ -12,12 +12,7 @@ export const carsApi = createApi({
       query: () => `/adverts`,
       providesTags: ['Car'],
     }),
-    // getById
-    getCarById: builder.query({
-      query: id => `/adverts/${id}`,
-      providesTags: ['Car'],
-    }),
   }),
 });
 
-export const { useGetCarsQuery, useGetCarByIdQuery } = carsApi;
+export const { useGetCarsQuery } = carsApi;

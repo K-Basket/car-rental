@@ -8,6 +8,7 @@ export const useCarsContext = () => useContext(CarsContext);
 
 export const Context = ({ children }) => {
   const { data } = useGetCarsQuery();
+
   const [showModal, setShowModal] = useState(false);
   const [dataOneCar, setDataOneCar] = useState({});
   const [idCarsFavorite, setIdCarsFavorite] = useState([]);
@@ -18,8 +19,7 @@ export const Context = ({ children }) => {
     document.body.style.overflow = 'visible'; // re scroll
   };
 
-  const getIdCar = idCard =>
-    setDataOneCar(data.find(({ id }) => id === idCard));
+  const getIdCar = idCar => setDataOneCar(data.find(({ id }) => id === idCar));
 
   return (
     <CarsContext.Provider
