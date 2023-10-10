@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   borderAccentColor,
+  device,
   highlightBgColor,
   hoverAccentColor,
   normalAccentColor,
@@ -13,19 +14,34 @@ import {
 
 export const CardModal = styled.div`
   position: relative;
-  width: 541px;
-  min-height: 752px;
-  padding: 40px;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px 20px 15px 20px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 
-  border-radius: 15px;
   background-color: ${whiteColor};
 
+  @media ${device.tablet} {
+    width: 541px;
+    height: min-content;
+    min-height: 752px;
+    padding: 40px;
+    border-radius: 15px;
+  }
+
   & > svg {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
     stroke: ${textMainColor};
+    z-index: 1;
     cursor: pointer;
+
+    @media ${device.tablet} {
+      top: 16px;
+      right: 16px;
+    }
   }
 `;
 
@@ -33,11 +49,16 @@ export const CardThumb = styled.div`
   position: relative;
 
   & img {
-    border-radius: 15px;
     width: 469px;
-    height: 314px;
+    height: 230px;
     object-fit: cover;
     border-radius: 10px;
+
+    @media ${device.tablet} {
+      width: 469px;
+      height: 314px;
+      object-fit: cover;
+    }
   }
 `;
 
@@ -107,6 +128,7 @@ export const CardTitleDescSt = styled.p`
 `;
 
 export const Link = styled.a`
+  display: block;
   width: 168px;
   padding: 12px 50px;
 

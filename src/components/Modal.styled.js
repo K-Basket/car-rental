@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { backdropModalBgColor } from 'utils/variables.styled';
+import { backdropModalBgColor, device } from 'utils/variables.styled';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -15,6 +15,13 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  width: 100vw;
+  height: 100vh;
+
+  @media ${device.tablet} {
+    width: min-content;
+    height: min-content;
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 24px);
+  }
 `;
