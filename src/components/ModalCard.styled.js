@@ -9,7 +9,7 @@ import {
   textSecondColor,
   transition,
   whiteColor,
-} from 'variables.styled';
+} from 'utils/variables.styled';
 
 export const CardModal = styled.div`
   position: relative;

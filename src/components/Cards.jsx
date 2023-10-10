@@ -1,6 +1,5 @@
 import {
   CardSet,
-  Container,
   Item,
   Card,
   CardThumb,
@@ -11,13 +10,14 @@ import {
 } from './Cards.styled';
 import { useCarsContext } from 'redux/Context';
 import { Favorite } from './Favorite';
+import { Container } from 'utils/container.styled';
 
 export const Cards = ({ listCars }) => {
   const { getIdCar, toggleModal } = useCarsContext();
 
   return (
     <section>
-      <Container>
+      <Container style={{ marginBottom: '50px' }}>
         <CardSet>
           {listCars &&
             listCars.map(

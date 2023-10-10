@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, ListOptions, Title } from './Select.styled';
+import { ListOptions, SelectList, Title } from './Select.styled';
 import sprite from 'images/sprite.svg';
 
 export const Select = ({
@@ -49,7 +49,7 @@ export const Select = ({
     <div>
       <Title $colorValue={$colorValue}>{title}</Title>
 
-      <Container $width={$width} onClick={handleShowList}>
+      <SelectList $width={$width} onClick={handleShowList}>
         {title === 'Car brand' ? (
           <p>{!selected ? `${defaultText}` : `${selected}`}</p>
         ) : (
@@ -57,8 +57,8 @@ export const Select = ({
         )}
 
         <svg
-          width="20px"
-          height="20px"
+          width="16px"
+          height="16px"
           style={{ transform: showSelect && `rotate(180deg)` }}
         >
           <use href={`${sprite}#icon-arrow`}></use>
@@ -80,7 +80,7 @@ export const Select = ({
             })}
           </ListOptions>
         )}
-      </Container>
+      </SelectList>
     </div>
   );
 };

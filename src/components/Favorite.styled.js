@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { normalAccentColor, transition } from 'variables.styled';
+import { normalAccentColor, transition } from 'utils/variables.styled';
 
 export const Svg = styled.svg`
   position: absolute;

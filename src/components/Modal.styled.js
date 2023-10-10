@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { backdropModalBgColor } from 'variables.styled';
+import { backdropModalBgColor } from 'utils/variables.styled';
 
 export const Backdrop = styled.div`
   position: fixed;
