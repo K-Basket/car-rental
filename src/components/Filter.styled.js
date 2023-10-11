@@ -94,6 +94,7 @@ export const InputLeft = styled.input`
   line-height: calc(20 / 14);
 
   @media ${device.desktop} {
+    max-width: min-content;
     width: 160px;
     padding: 14px 0 14px 70px;
     margin-top: 8px;
@@ -120,6 +121,7 @@ export const InputRight = styled.input`
   line-height: calc(20 / 14);
 
   @media ${device.desktop} {
+    max-width: min-content;
     width: 160px;
     padding: 14px 0 14px 48px;
     margin-right: 18px;
