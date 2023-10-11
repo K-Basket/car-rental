@@ -113,7 +113,7 @@ export const InputRight = styled.input`
   border: none;
   border-radius: 0px 10px 10px 0px;
 
-  color: ${textMainColor};
+  color: ${({ $color }) => ($color ? '#ff0000' : `${textMainColor}`)};
   background-color: ${highlightBgColor};
 
   font-size: 14px;

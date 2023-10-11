@@ -33,6 +33,7 @@ export const Filter = () => {
   const [valueForm, setValueForm] = useState(INITIAL_STATE);
   const { priceFrom, priceTo, Carbrand, Pricehour } = valueForm;
   const [isClean, setIsClean] = useState(false);
+  const [mileageErr, setMileageErr] = useState(false);
 
   useEffect(() => {
     if (
@@ -40,8 +41,10 @@ export const Filter = () => {
       valueForm.Pricehour ||
       valueForm.priceFrom ||
       valueForm.priceTo
-    )
+    ) {
       setIsClean(false);
+      setMileageErr(false);
+    }
   }, [valueForm]);
 
   useEffect(() => {
@@ -81,10 +84,7 @@ export const Filter = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    if (priceFrom >= priceTo && priceTo !== '') {
-      console.warn('The "From" value must NOT be greater than the "To" value');
-      return;
-    }
+    if (priceFrom >= priceTo && priceTo !== '') return setMileageErr(true);
 
     setDataFilter({
       ...valueForm,
@@ -138,6 +138,7 @@ export const Filter = () => {
             <div>
               <p>To</p>
               <InputRight
+                $color={mileageErr}
                 type="text"
                 name="priceTo"
                 value={priceTo}
