@@ -39,6 +39,7 @@ export const CardModal = styled.div`
     cursor: pointer;
 
     @media ${device.tablet} {
+      position: absolute;
       top: 16px;
       right: 16px;
     }
