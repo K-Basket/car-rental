@@ -1,5 +1,6 @@
 import { Cards } from 'components/Cards';
 import { Filter } from 'components/Filter';
+import { Loader } from 'components/Loader';
 import { Modal } from 'components/Modal';
 import { ModalCard } from 'components/ModalCard';
 import { useEffect, useState } from 'react';
@@ -7,7 +8,7 @@ import { useCarsContext } from 'redux/Context';
 import { useGetCarsQuery } from 'redux/carSlice';
 
 const CatalogPage = () => {
-  const { data } = useGetCarsQuery();
+  const { data, error, isLoading } = useGetCarsQuery();
   const { showModal, toggleModal, dataOneCar, dataFilter } = useCarsContext();
   const {
     Carbrand: brand,
@@ -48,6 +49,8 @@ const CatalogPage = () => {
 
   return (
     <>
+      {isLoading && !error && <Loader />}
+
       <Filter />
       <Cards listCars={listFilteredCars} />
 
