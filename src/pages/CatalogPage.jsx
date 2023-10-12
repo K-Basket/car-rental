@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useCarsContext } from 'redux/Context';
 import { useGetCarsQuery } from 'redux/carSlice';
 
-const Catalog = () => {
+const CatalogPage = () => {
   const { data } = useGetCarsQuery();
   const { showModal, toggleModal, dataOneCar, dataFilter } = useCarsContext();
   const {
@@ -60,4 +60,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default CatalogPage;

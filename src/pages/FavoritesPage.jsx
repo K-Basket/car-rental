@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useCarsContext } from 'redux/Context';
 import { useGetCarsQuery } from 'redux/carSlice';
 
-const Favorites = () => {
+const FavoritesPage = () => {
   const { data } = useGetCarsQuery();
   const { showModal, toggleModal, dataOneCar, idCarsFavorite } =
     useCarsContext();
@@ -36,4 +36,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default FavoritesPage;

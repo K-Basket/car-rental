@@ -7,7 +7,6 @@ export const carsApi = createApi({
   }),
   tagTypes: ['Car'],
   endpoints: builder => ({
-    // get
     getCars: builder.query({
       query: () => `/adverts`,
       providesTags: ['Car'],

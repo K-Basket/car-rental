@@ -54,10 +54,6 @@ export const Item = styled.li`
       scale: 1.007;
     }
   }
-
-  /* & * {
-    outline: 1px solid blueviolet;
-  } */
 `;
 
 export const Card = styled.article`
